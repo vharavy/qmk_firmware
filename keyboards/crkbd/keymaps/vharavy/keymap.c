@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         U_NU,             KC_Q,              KC_W,              KC_F,              KC_P,              KC_B,                                                                 KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,              U_NU, 
         U_NU,             LGUI_T(KC_A),      LALT_T(KC_R),      LCTL_T(KC_S),      LSFT_T(KC_T),      KC_G,                                                                 KC_M,              LSFT_T(KC_N),      LCTL_T(KC_E),      LALT_T(KC_I),      LGUI_T(KC_O),         U_NU,
         U_NU,             LT(U_BUTTON,KC_Z), ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,                                                                 KC_K,              KC_H,              KC_COMM,           ALGR_T(KC_DOT),    LT(U_BUTTON,KC_SLSH), U_NU,
-                                                                                   LT(U_MEDIA,KC_ESC),LT(U_NAV,KC_SPC),  LT(U_MOUSE,KC_TAB),             LT(U_SYM,KC_ENT),  LT(U_NUM,KC_BSPC), OSM(MOD_LSFT)
+                                                                                   LT(U_MEDIA,KC_ESC),LT(U_NAV,KC_BSPC), LT(U_MOUSE,KC_TAB),             LT(U_SYM,KC_ENT),  LT(U_NUM,KC_SPC), OSM(MOD_LSFT)
     ),
     // TODO: Russian
     [1] = LAYOUT_split_3x6_3(
