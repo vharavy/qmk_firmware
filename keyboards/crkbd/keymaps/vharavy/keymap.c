@@ -18,85 +18,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-#define MIRYOKU_LAYER_LIST \
-MIRYOKU_X(ENGLISH,"Engish") \
-MIRYOKU_X(SHIFT,  "Shift") \
-MIRYOKU_X(BUTTON, "Button") \
-MIRYOKU_X(NAV,    "Nav") \
-MIRYOKU_X(NUM,    "Num") \
-MIRYOKU_X(SYM,    "Sym") \
-MIRYOKU_X(FUN,    "Fun")
+#define MY_LAYER_LIST \
+MY_X(ENGLISH,"Engish") \
+MY_X(SYMBOLS,"Symbols") \
+MY_X(NAV,    "Nav")
 
-enum miryoku_layers {
-#define MIRYOKU_X(LAYER, STRING) U_##LAYER,
-MIRYOKU_LAYER_LIST
-#undef MIRYOKU_X
+enum my_layers {
+#define MY_X(LAYER, STRING) U_##LAYER,
+MY_LAYER_LIST
+#undef MY_X
 };
 
 // Keymap
 
+#define OSM_SFT         OSM(MOD_LSFT)
+#define OSM_GUI         OSM(MOD_LGUI)
+#define NAV_BSPC        LT(U_NAV,KC_BSPC)       // Activate Nav layer when held, Backspace when tapped.
+#define SYM_TAB         LT(U_SYMBOLS,KC_TAB)    // Activate Symbols & Numbers layer when held, Tab when tapped.
+
+#define HR_A            LALT_T(KC_A)
+#define HR_R            LSFT_T(KC_R)
+#define HR_S            LCTL_T(KC_S)
+#define HR_T            LGUI_T(KC_T)
+
+#define HR_N            RGUI_T(KC_N)
+#define HR_E            RCTL_T(KC_E)
+#define HR_I            RSFT_T(KC_I)
+#define HR_O            RALT_T(KC_O)
+
+#define HR_1            LALT_T(KC_1)
+#define HR_2            LSFT_T(KC_2)
+#define HR_3            LCTL_T(KC_3)
+#define HR_4            LGUI_T(KC_4)
+
+#define HR_7            RGUI_T(KC_7)
+#define HR_8            RCTL_T(KC_8)
+#define HR_9            RSFT_T(KC_9)
+#define HR_0            RALT_T(KC_0)
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // English
     [0] = LAYOUT_split_3x6_3(
-        U_NU,             KC_Q,              KC_W,              KC_F,              KC_P,              KC_B,                                                                 KC_J,              KC_L,              KC_U,              KC_Y,              KC_SCLN,              U_NU,
-        KC_ESC,           KC_A,              KC_R,              KC_S,              KC_T,              KC_G,                                                                 KC_M,              KC_N,              KC_E,              KC_I,              KC_O,                 KC_QUOTE,
-        U_NU,             KC_Z,              KC_X,              KC_C,              KC_D,              KC_V,                                                                 KC_K,              KC_H,              KC_COMM,           KC_DOT,            KC_SLSH,              U_NU,
-                                                                                   LT(U_SYM,KC_ESC),  LT(U_NAV,KC_BSPC), LT(U_FUN,KC_TAB),              LT(U_BUTTON,KC_ENT),LT(U_NUM,KC_SPC),  OSL(U_SHIFT)
+        U_NU,       KC_Q,       KC_W,       KC_F,       KC_P,       KC_B,                                   KC_J,       KC_L,       KC_U,       KC_Y,       KC_SCLN,    U_NU,
+        KC_ESC,     HR_A,       HR_R,       HR_S,       HR_T,       KC_G,                                   KC_M,       HR_N,       HR_E,       HR_I,       HR_O,       KC_QUOTE,
+        U_NU,       KC_Z,       KC_X,       KC_C,       KC_D,       KC_V,                                   KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    U_NU,
+                                                        OSM_GUI,    NAV_BSPC,   KC_ENT,         SYM_TAB,    KC_SPC,     OSM_SFT
     ),
 
-    // Shift
+    // Symbols & Numbers
     [1] = LAYOUT_split_3x6_3(
-        U_NU,             S(KC_Q),           S(KC_W),           S(KC_F),           S(KC_P),           S(KC_B),                                                              S(KC_J),           S(KC_L),           S(KC_U),           S(KC_Y),           S(KC_SCLN),           U_NU,
-        S(KC_ESC),        S(KC_A),           S(KC_R),           S(KC_S),           S(KC_T),           S(KC_G),                                                              S(KC_M),           S(KC_N),           S(KC_E),           S(KC_I),           S(KC_O),              S(KC_QUOTE),
-        U_NU,             S(KC_Z),           S(KC_X),           S(KC_C),           S(KC_D),           S(KC_V),                                                              S(KC_K),           S(KC_H),           S(KC_COMM),        S(KC_DOT),         S(KC_SLSH),           U_NU,
-                                                                                   LT(U_SYM,KC_ESC),  S(KC_BSPC),        S(KC_TAB),                     S(KC_ENT),          S(KC_SPC),         U_NA
+        U_NA,       KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,                                KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    U_NU,
+        KC_TILD,    HR_1,       HR_2,       HR_3,       HR_4,       KC_5,                                   KC_6,       HR_7,       HR_8,       HR_9,       HR_0,       KC_BSLS,
+        U_NA,       KC_GRV,     KC_PIPE,    KC_UNDS,    KC_LCBR,    KC_LBRC,                                KC_RBRC,    KC_RCBR,    KC_COMM,    KC_DOT,     KC_SLSH,    U_NU,
+                                                        KC_PLUS,    KC_BSPC,    KC_EQUAL,       U_NA,       KC_SPC,     KC_MINS
     ),
-
-    // Button
-    [2] = LAYOUT_split_3x6_3(
-        U_NU,             U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,                                                                U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             U_NU,
-        KC_ESC,           KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           U_NU,                                                                 U_NU,              KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           KC_QUOTE,
-        U_NU,             U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,                                                                U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             U_NU,
-                                                                                   U_NU,              U_NU,              U_NU,                           U_NU,              U_NU,              U_NU
-    ),
-
-    //
-    // Activated by Left Hand Thumb
-    //
 
     // Nav
-    [3] = LAYOUT_split_3x6_3(
-        U_NA,             U_NA,              U_NA,              U_NA,              U_NA,              U_NA,                                                                 U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             U_NU,
-        KC_ESC,           KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           U_NA,                                                                 U_NU,              KC_LEFT,           KC_DOWN,           KC_UP,             KC_RGHT,           KC_QUOTE,
-        U_NA,             U_NA,              KC_ALGR,           U_NA,              U_NA,              U_NA,                                                                 KC_INS,            KC_HOME,           KC_PGDN,           KC_PGUP,           KC_END,            U_NU,
-                                                                                   U_NA,              U_NA,              U_NA,                           KC_ENT,            KC_BSPC,           KC_DEL
+    [2] = LAYOUT_split_3x6_3(
+        U_NA,       U_NA,       U_NA,       U_NA,       U_NA,       U_NA,                                   U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,      U_NU,
+        KC_ESC,     KC_LALT,    KC_LSFT,    KC_LCTL,    KC_LCMD,    U_NA,                                   U_NU,       KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_QUOTE,
+        U_NA,       U_NA,       KC_ALGR,    U_NA,       U_NA,       U_NA,                                   KC_INS,     KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     U_NU,
+                                                        U_NA,       U_NA,       U_NA,           U_NA,       U_NA,       U_NA
     ),
-
-    //
-    // Activated by Left Hand Thumb
-    //
-
-    // Num
-    [4] = LAYOUT_split_3x6_3(
-        U_NU,             KC_LBRC,           KC_7,              KC_8,              KC_9,              KC_RBRC,                                                              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NU,
-        KC_ESC,           KC_SCLN,           KC_4,              KC_5,              KC_6,              KC_EQL,                                                               U_NA,              KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           KC_QUOTE,
-        U_NU,             KC_GRV,            KC_1,              KC_2,              KC_3,              KC_BSLS,                                                              U_NA,              U_NA,              U_NA,              KC_ALGR,           U_NA,              U_NU,
-                                                                                   KC_DOT,            KC_0,              KC_MINS,                        U_NA,              U_NA,              U_NA
-    ),
-    // Sym
-    [5] = LAYOUT_split_3x6_3(
-        U_NU,             KC_LCBR,           KC_AMPR,           KC_ASTR,           KC_LPRN,           KC_RCBR,                                                              U_NA,              U_NU,              U_NU,              U_NU,              U_NU,              U_NU,
-        KC_ESC,           KC_COLN,           KC_DLR,            KC_PERC,           KC_CIRC,           KC_PLUS,                                                              U_NA,              KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           KC_QUOTE,
-        U_NU,             KC_TILD,           KC_EXLM,           KC_AT,             KC_HASH,           KC_PIPE,                                                              U_NA,              U_NU,              U_NU,              KC_ALGR,           U_NA,              U_NU,
-                                                                                   KC_LPRN,           KC_RPRN,           KC_UNDS,                        U_NA,              U_NA,              U_NA
-    ),
-    // Fun
-    [6] = LAYOUT_split_3x6_3(
-        U_NU,             KC_F12,            KC_F7,             KC_F8,             KC_F9,             KC_PSCR,                                                              U_NA,              U_NU,              U_NU,              U_NU,              U_NU,              U_NU,
-        KC_ESC,           KC_F11,            KC_F4,             KC_F5,             KC_F6,             KC_SCRL,                                                              U_NA,              KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           KC_QUOTE,
-        U_NU,             KC_F10,            KC_F1,             KC_F2,             KC_F3,             KC_PAUS,                                                              U_NA,              U_NU,              U_NU,              KC_ALGR,           U_NA,              U_NU,
-                                                                                   KC_APP,            KC_SPC,            KC_TAB,                         U_NA,              U_NA,              U_NA
-    )
 };
 
 // Thumb Combos
@@ -110,7 +94,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return OLED_ROTATION_0;
 }
 
-#define MIRYOKU_X(LAYER, STRING)            \
+#define MY_X(LAYER, STRING)            \
 case U_##LAYER:                             \
     oled_write_ln_P(PSTR(STRING), false);  \
     break;
@@ -119,14 +103,14 @@ bool oled_render_layer_state(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
-        MIRYOKU_LAYER_LIST
+        MY_LAYER_LIST
         default:
             oled_write_ln_P(PSTR("Undefined"), false);
     }
 
     return false;
 }
-#undef MIRYOKU_X
+#undef MY_X
 
 void oled_render_logo(void) {
     static const char PROGMEM crkbd_logo[] = {
