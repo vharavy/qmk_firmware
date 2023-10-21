@@ -36,25 +36,25 @@ MY_LAYER_LIST
 #define NAV_BSPC        LT(U_NAV,KC_BSPC)       // Activate Nav layer when held, Backspace when tapped.
 #define SYM_TAB         LT(U_SYMBOLS,KC_TAB)    // Activate Symbols & Numbers layer when held, Tab when tapped.
 
-#define HR_A            LALT_T(KC_A)
-#define HR_R            LSFT_T(KC_R)
+#define HR_A            LGUI_T(KC_A)
+#define HR_R            LALT_T(KC_R)
 #define HR_S            LCTL_T(KC_S)
-#define HR_T            LGUI_T(KC_T)
+#define HR_T            LSFT_T(KC_T)
 
-#define HR_N            RGUI_T(KC_N)
+#define HR_N            RSFT_T(KC_N)
 #define HR_E            RCTL_T(KC_E)
-#define HR_I            RSFT_T(KC_I)
-#define HR_O            RALT_T(KC_O)
+#define HR_I            RALT_T(KC_I)
+#define HR_O            RGUI_T(KC_O)
 
-#define HR_1            LALT_T(KC_1)
-#define HR_2            LSFT_T(KC_2)
+#define HR_1            LGUI_T(KC_1)
+#define HR_2            LALT_T(KC_2)
 #define HR_3            LCTL_T(KC_3)
-#define HR_4            LGUI_T(KC_4)
+#define HR_4            LSFT_T(KC_4)
 
-#define HR_7            RGUI_T(KC_7)
+#define HR_7            RSFT_T(KC_7)
 #define HR_8            RCTL_T(KC_8)
-#define HR_9            RSFT_T(KC_9)
-#define HR_0            RALT_T(KC_0)
+#define HR_9            RALT_T(KC_9)
+#define HR_0            RGUI_T(KC_0)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Nav
     [2] = LAYOUT_split_3x6_3(
         U_NA,       U_NA,       U_NA,       U_NA,       U_NA,       U_NA,                                   U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,      U_NU,
-        KC_ESC,     KC_LALT,    KC_LSFT,    KC_LCTL,    KC_LCMD,    U_NA,                                   U_NU,       KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_QUOTE,
+        KC_ESC,     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    U_NA,                                   U_NU,       KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_QUOTE,
         U_NA,       U_NA,       KC_ALGR,    U_NA,       U_NA,       U_NA,                                   KC_INS,     KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     U_NU,
                                                         U_NA,       U_NA,       U_NA,           U_NA,       U_NA,       U_NA
     ),
