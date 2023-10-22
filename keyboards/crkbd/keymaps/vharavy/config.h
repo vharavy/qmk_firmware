@@ -23,9 +23,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Select hand configuration */
 #define MASTER_LEFT
 
-// Default but used in macros
+// Configure the global tapping term (default: 200ms)
+#ifdef TAPPING_TERM
 #undef TAPPING_TERM
+#endif
 #define TAPPING_TERM 200
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#ifdef QUICK_TAP_TERM
+#undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 0
 
 #define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 3000  /* Time (in ms) before the one shot key is released */
