@@ -33,8 +33,8 @@ MY_LAYER_LIST
 
 #define OSM_SFT         OSM(MOD_LSFT)
 #define OSM_GUI         OSM(MOD_LGUI)
-#define NAV_BSPC        LT(U_NAV,KC_BSPC)       // Activate Nav layer when held, Backspace when tapped.
-#define SYM_ENT         LT(U_SYMBOLS,KC_ENT)    // Activate Symbols & Numbers layer when held, Enter when tapped.
+#define NAV_BSPC        LT(U_NAV, KC_BSPC)       // Activate Nav layer when held, Backspace when tapped.
+#define SYM_SPC         LT(U_SYMBOLS, KC_SPC)    // Activate Symbols & Numbers layer when held, Space when tapped.
 
 #define HR_A            LGUI_T(KC_A)
 #define HR_R            LALT_T(KC_R)
@@ -56,14 +56,13 @@ MY_LAYER_LIST
 #define HR_9            RALT_T(KC_9)
 #define HR_0            RGUI_T(KC_0)
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // English
     [0] = LAYOUT_split_3x6_3(
         RGB_TOG,    KC_Q,       KC_W,       KC_F,       KC_P,       KC_B,                                   KC_J,       KC_L,       KC_U,       KC_Y,       KC_SCLN,    RGB_VAI,
         KC_ESC,     HR_A,       HR_R,       HR_S,       HR_T,       KC_G,                                   KC_M,       HR_N,       HR_E,       HR_I,       HR_O,       KC_QUOTE,
         RGB_MOD,    KC_Z,       KC_X,       KC_C,       KC_D,       KC_V,                                   KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    RGB_SAI,
-                                                        OSM_GUI,    NAV_BSPC,   KC_TAB,         SYM_ENT,    KC_SPC,     OSM_SFT
+                                                        OSM_SFT,    NAV_BSPC,   KC_TAB,         KC_ENT,     SYM_SPC,    OSM_GUI
     ),
 
     // Symbols & Numbers
@@ -71,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,                                KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    RGB_VAI,
         KC_TILD,    HR_1,       HR_2,       HR_3,       HR_4,       KC_5,                                   KC_6,       HR_7,       HR_8,       HR_9,       HR_0,       KC_BSLS,
         RGB_MOD,    KC_GRV,     KC_PIPE,    KC_UNDS,    KC_LCBR,    KC_LBRC,                                KC_RBRC,    KC_RCBR,    KC_COMM,    KC_DOT,     KC_SLSH,    RGB_SAI,
-                                                        KC_PLUS,    KC_BSPC,    KC_EQUAL,       U_NA,       KC_SPC,     KC_MINS
+                                                        KC_PLUS,    KC_BSPC,    KC_EQUAL,       KC_ENT,     U_NA,       KC_MINS
     ),
 
     // Nav
